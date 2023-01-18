@@ -3,7 +3,8 @@
 describe('Scenarios where authentication is a pre-requirement', () => {
   beforeEach(() => {
     cy.intercept('GET', '**/notes').as('getNotes')
-    cy.intercept('POST', '**/6').as('gambiarra')
+    // cy.intercept('POST', '**/6').as('gambiarra')
+    cy.intercept('POST', '**.com').as('gambiarra')
     cy.login()
   })
 
@@ -12,7 +13,7 @@ describe('Scenarios where authentication is a pre-requirement', () => {
     const noteDescription = faker.lorem.words(4)
 
     cy.createNote(noteDescription)
-    // cy.wait('@gambiarra')
+    cy.wait('@gambiarra')
     cy.wait('@getNotes')
 
     const updatedNoteDescription = faker.lorem.words(4)
@@ -31,7 +32,7 @@ describe('Scenarios where authentication is a pre-requirement', () => {
     cy.intercept('POST', '**/prod/billing').as('paymentRequest')
 
     cy.fillSettingsFormAndSubmit()
-    cy.wait('@gambiarra')
+    // cy.wait('@gambiarra')
     cy.wait('@getNotes')
     cy.wait('@paymentRequest').then(response => {
       expect(response.state).to.equal('Complete')
@@ -40,7 +41,7 @@ describe('Scenarios where authentication is a pre-requirement', () => {
 
   it('logs out', () => {
     cy.visit('/')
-    cy.wait('@gambiarra')
+    // cy.wait('@gambiarra')
     cy.wait('@getNotes')
     if (Cypress.config('viewportWidth') < Cypress.env('viewportWidthBreakpoint')) {
       cy.get('.navbar-toggle.collapsed')
