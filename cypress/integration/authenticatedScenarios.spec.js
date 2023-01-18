@@ -13,7 +13,7 @@ describe('Scenarios where authentication is a pre-requirement', () => {
     const noteDescription = faker.lorem.words(4)
 
     cy.createNote(noteDescription)
-    cy.wait('@gambiarra')
+    // cy.wait('@gambiarra')
     cy.wait('@getNotes')
 
     const updatedNoteDescription = faker.lorem.words(4)
@@ -24,7 +24,7 @@ describe('Scenarios where authentication is a pre-requirement', () => {
     cy.wait('@getNotes')
 
     cy.deleteNote(updatedNoteDescription)
-    // cy.wait('@gambiarra')
+    cy.wait('@gambiarra')
     cy.wait('@getNotes')
   })
 
@@ -41,7 +41,7 @@ describe('Scenarios where authentication is a pre-requirement', () => {
 
   it('logs out', () => {
     cy.visit('/')
-    // cy.wait('@gambiarra')
+    cy.wait('@gambiarra')
     cy.wait('@getNotes')
     if (Cypress.config('viewportWidth') < Cypress.env('viewportWidthBreakpoint')) {
       cy.get('.navbar-toggle.collapsed')
