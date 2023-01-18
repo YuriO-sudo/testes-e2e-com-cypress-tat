@@ -12,18 +12,18 @@ describe('Scenarios where authentication is a pre-requirement', () => {
     const noteDescription = faker.lorem.words(4)
 
     cy.createNote(noteDescription)
-    cy.wait('@gambiarra')
+    // cy.wait('@gambiarra')
     cy.wait('@getNotes')
 
     const updatedNoteDescription = faker.lorem.words(4)
     const attachFile = true
 
     cy.editNote(noteDescription, updatedNoteDescription, attachFile)
-    cy.wait('@gambiarra')
+    // cy.wait('@gambiarra')
     cy.wait('@getNotes')
 
     cy.deleteNote(updatedNoteDescription)
-    cy.wait('@gambiarra')
+    // cy.wait('@gambiarra')
     cy.wait('@getNotes')
   })
 
