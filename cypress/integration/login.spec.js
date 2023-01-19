@@ -1,3 +1,5 @@
+/// <reference path="../support/commands.d.ts" />
+
 it('successfully logs in', () => {
   cy.intercept('GET', '**/notes').as('getNotes')
   // var url = 'https://cognito-idp.eu-central-1.amazonaws.com/'
